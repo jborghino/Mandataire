@@ -44,20 +44,17 @@ public class Watcher extends Thread {
 				List<WatchEvent<?>> events = watchKey.pollEvents();
 				for (WatchEvent<?> event : events) {
 					if (event.kind() == StandardWatchEventKinds.ENTRY_CREATE) {
-						System.out.println("Created: " + event.context().toString());
-						
 						Path path = (Path) event.context();
 						String fileName = path.toFile().getPath();
 		
-						//Format : nomMandataire-jjmmyyyy.xml
-						//TODO
-//						String patternStr = "[a-zA-Z]*-[0-9]*{8}\.xml";
-						String patternStr = "";
+						//FORMAT : nomMandataire_jj-mm-yy.xml
+						String patternStr = "[a-zA-Z0-9]*_[0-9]{2}\\-[0-9]{2}\\-[0-9]{2}\\.xml";
+//						String patternStr = "";
 						Pattern pattern = Pattern.compile(patternStr);
 						Matcher matcher = pattern.matcher(fileName);
-						System.out.println("File name: " + fileName);
 						Boolean matchFound = matcher.find();
 						if(matchFound){
+							System.out.println("Created: " + event.context().toString());
 							parserXML.parseXML(fileName);
 						}
 						

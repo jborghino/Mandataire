@@ -66,6 +66,8 @@ public class ParserXML {
 				List<String> sirenFromDB = concessionnaireService.findAllSiren();
 				if(!sirenFromDB.contains(sirenFromXML)){
 					concessionnaireService.save(con);
+				} else {
+					//TODO : implementer le cas ou lors de l'ajout d'un nouveau fichier, on supprime les anciennes offres
 				}
 			}
 			
