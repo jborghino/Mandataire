@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+
+
+	<xs:element name="root">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="1" name="concessionnaire" type="concessionnaire" />
+				<xs:element maxOccurs="unbounded" name="vehicule" type="vehicule" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+
+
+	<xs:complexType name="concessionnaire">
+		<xs:sequence>
+			<xs:element name="siren" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="vehicule">
+		<xs:sequence>
+			<xs:element name="marque" type="xs:string" />
+			<xs:element name="modele" type="xs:string" />
+			<xs:element name="couleur" type="xs:string" />
+			<xs:element name="nb_portes" type="xs:int" />
+			<xs:element name="nb_places" type="xs:int" />
+			<xs:element name="equipement" type="xs:string" />
+			<xs:element name="motorisation" type="xs:string" />
+			<xs:element name="emission" type="xs:int" />
+			<xs:element name="url" type="xs:string" />
+			<xs:element name="prix" type="xs:int" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- <xs:element name="client"> -->
+	<!-- <xs:complexType> -->
+	<!-- <xs:sequence> -->
+	<!-- <xs:element name="nom" type="xs:string" /> -->
+	<!-- <xs:element name="prenom" type="xs:string" /> -->
+	<!-- <xs:element name="adresse" type="xs:string" /> -->
+	<!-- <xs:element name="mail" type="xs:string" /> -->
+	<!-- </xs:sequence> -->
+	<!-- </xs:complexType> -->
+	<!-- </xs:element> -->
+
+</xs:schema>
