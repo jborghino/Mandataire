@@ -33,4 +33,14 @@ public class ConcessionnaireJPADAO extends GenericJPADAO<Concessionnaire, Intege
 		return null;
 	}
 	
+	
+	@Override
+	public Concessionnaire findBySiren(String siren) throws DAOException {
+		TypedQuery<Concessionnaire> query3 = entityManager.createQuery(
+				"select c from Concessionnaire c where c.siren = :siren", Concessionnaire.class);
+		query3.setParameter("siren", siren);
+		Concessionnaire singleResult = query3.getSingleResult();
+	
+		return singleResult;
+	}
 }

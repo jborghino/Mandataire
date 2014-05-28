@@ -32,7 +32,8 @@ public class ParserXML {
 	@Autowired
 	private VehiculeService vehiculeService;
 
-	public void parseXML(String f) throws FileNotFoundException, ServiceException {
+	public void parseXML(String f) throws FileNotFoundException,
+			ServiceException {
 
 		JAXBContext context;
 		try {
@@ -40,15 +41,16 @@ public class ParserXML {
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 
 			String path = "/home/stagiaire/POE/workspace/Mandataire/";
-			String tmp = path+f;
+			String tmp = path + f;
 			File file = new File(tmp);
 			Root root = (Root) unmarshaller.unmarshal(file);
-			
+
 			List<Vehicule> vehicules = root.getVehicule();
 			if (vehicules != null) {
 				List<fr.treeptik.model.Vehicule> listVehicules = new ArrayList<>();
 				for (Vehicule vehicule : vehicules) {
-					fr.treeptik.model.Vehicule v = VehiculeMapper.getVehicule(vehicule);
+					fr.treeptik.model.Vehicule v = VehiculeMapper
+							.getVehicule(vehicule);
 					listVehicules.add(v);
 					try {
 						vehiculeService.save(v);
@@ -56,27 +58,34 @@ public class ParserXML {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
+
 				}
-				
+
 				Concessionnaire concessionnaire = root.getConcessionnaire();
-				fr.treeptik.model.Concessionnaire con = ConcessionnaireMapper.getConcessionnaire(concessionnaire, listVehicules);
-				
+				fr.treeptik.model.Concessionnaire con = ConcessionnaireMapper
+						.getConcessionnaire(concessionnaire, listVehicules);
+
 				String sirenFromXML = con.getSiren();
-				List<String> sirenFromDB = concessionnaireService.findAllSiren();
-				if(!sirenFromDB.contains(sirenFromXML)){
+				List<String> sirenFromDB = concessionnaireService
+						.findAllSiren();
+				// Si le siren fournit dans le XML n'existe pas en base
+				if (!sirenFromDB.contains(sirenFromXML)) {
+					// On save le concessionnaire
 					concessionnaireService.save(con);
 				} else {
-					//TODO : implementer le cas ou lors de l'ajout d'un nouveau fichier, on supprime les anciennes offres
+					// Si le siren existe on supprime les vehicules du siren
+					// concerné
+					fr.treeptik.model.Concessionnaire findBySiren = concessionnaireService
+							.findBySiren(sirenFromXML);
+					Integer concessionnaireId = findBySiren.getId();
+					vehiculeService.deleteById(concessionnaireId);
 				}
 			}
-			
-			
+
 		} catch (JAXBException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
 
 	}
 
@@ -96,6 +105,5 @@ public class ParserXML {
 		}
 		return null;
 	}
-
 
 }

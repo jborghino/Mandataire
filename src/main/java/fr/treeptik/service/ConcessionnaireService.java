@@ -22,4 +22,6 @@ public interface ConcessionnaireService {
 	
 	public List<String> findAllSiren() throws ServiceException;
 	
+	public Concessionnaire findBySiren(String siren) throws ServiceException;
+	
 }

@@ -13,10 +13,10 @@
                            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd 
                            http://www.springframework.org/schema/security 
                            http://www.springframework.org/schema/security/spring-security-3.1.xsd ">
-	
+
 	<context:annotation-config />
 	<context:component-scan base-package="fr.treeptik" />
-
+	<mvc:annotation-driven />
 
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
@@ -54,6 +54,44 @@
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
 		p:entityManagerFactory-ref="entityManagerFactory" />
 
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="FR" />
+	</bean>
+
+	<mvc:interceptors>
+		<bean id="localeChangeInterceptor"
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="lang" />
+		</bean>
+	</mvc:interceptors>
+
+	<bean id="localeChangeInterceptorLogin"
+		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="lang" />
+	</bean>
+
 	<tx:annotation-driven transaction-manager="transactionManager" />
-	
+
+	<!-- SET default mail properties -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="johan.borghino@gmail.com" />
+		<property name="password" value="04221a3ttry" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="MailSenderServiceImpl" class="fr.treeptik.service.impl.MailSenderServiceImpl">
+		<property name="mailSender" ref="mailSender" />
+	</bean>
+
+
 </beans>

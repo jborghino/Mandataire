@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -25,8 +26,10 @@ public class Concessionnaire implements Serializable{
 	private String siren;
 	private String type;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany
+	@JoinColumn(name="concessionnaire_id", referencedColumnName="id")
 	private List<Vehicule> vehicules;
+	
 	
 	public Integer getId() {
 		return id;

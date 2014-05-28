@@ -27,6 +27,9 @@ public class Vehicule implements Serializable{
 	private Integer nbPlaces;
 	private Integer emission;
 	private Integer prix;
+	
+	private Integer concessionnaire_id;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -100,6 +103,12 @@ public class Vehicule implements Serializable{
 				+ equipement + ", motorisation=" + motorisation + ", url="
 				+ url + ", nbPortes=" + nbPortes + ", nbPlaces=" + nbPlaces
 				+ ", emission=" + emission + ", prix=" + prix + "]";
+	}
+	public Integer getConcessionnaire() {
+		return concessionnaire_id;
+	}
+	public void setConcessionnaire(Integer concessionnaire) {
+		this.concessionnaire_id = concessionnaire;
 	}
 	
 	

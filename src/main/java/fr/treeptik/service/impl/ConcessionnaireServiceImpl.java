@@ -86,5 +86,14 @@ public class ConcessionnaireServiceImpl implements ConcessionnaireService {
 			throw new ServiceException("Erreur findAllSiren concessionnaire", e);
 		}
 	}
+	
+	@Override
+	public Concessionnaire findBySiren(String siren) throws ServiceException {
+		try {
+			return concessionnaireDAO.findBySiren(siren);
+		} catch (DAOException e) {
+			throw new ServiceException("Erreur findBySiren concessionnaire", e);
+		}
+	}
 
 }

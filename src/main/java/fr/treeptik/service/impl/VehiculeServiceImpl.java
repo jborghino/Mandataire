@@ -74,6 +74,14 @@ public class VehiculeServiceImpl implements VehiculeService{
 		}
 	}
 	
-	
+	@Override
+	@Transactional
+	public void deleteById(Integer concessionnaire_id) throws ServiceException{
+		try {
+			vehiculeDAO.deleteById(concessionnaire_id);
+		} catch (DAOException e) {
+			throw new ServiceException("Erreur deleteById vehicule", e);
+		}
+	}
 	
 }

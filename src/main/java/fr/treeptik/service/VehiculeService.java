@@ -19,4 +19,5 @@ public interface VehiculeService {
 
 	List<Vehicule> findAll() throws ServiceException;
 	
+	public void deleteById(Integer concessionnaire_id) throws ServiceException;
 }

@@ -11,5 +11,6 @@ public interface ConcessionnaireDAO extends GenericDAO<Concessionnaire, Integer>
 
 	
 	public List<String> findAllSiren() throws DAOException;
+	public Concessionnaire findBySiren(String siren) throws DAOException;
 	
 }
