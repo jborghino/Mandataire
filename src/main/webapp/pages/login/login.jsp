@@ -55,7 +55,7 @@
 				<div class="col-lg-4 col-lg-offset-4 m-t-large">
 					<section class="panel">
 						<header class="panel-heading text-center"> Connectez-vous
-							à votre compte Shop </header>
+							à votre compte </header>
 						<form action="../j_spring_security_check" method="POST"
 							class="panel-body">
 							<div class="block">

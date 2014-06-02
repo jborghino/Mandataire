@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Client implements Serializable {
@@ -20,6 +21,11 @@ public class Client implements Serializable {
 	private String prenom;
 	private String adresse;
 	private String mail;
+	private String password;
+	
+	@ManyToOne
+	private Role role;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -54,6 +60,18 @@ public class Client implements Serializable {
 	public String toString() {
 		return "Client [id=" + id + ", nom=" + nom + ", prenom=" + prenom
 				+ ", adresse=" + adresse + ", mail=" + mail + "]";
+	}
+	public Role getRole() {
+		return role;
+	}
+	public void setRole(Role role) {
+		this.role = role;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	

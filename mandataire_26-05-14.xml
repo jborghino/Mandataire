@@ -9,10 +9,14 @@
     <couleur>noir</couleur>
     <nb_portes>3</nb_portes>
     <nb_places>5</nb_places>
-    <equipement></equipement>
-    <motorisation></motorisation>
-    <emission>0</emission>
-    <url>http://www.car-luxury-agency.com/blog/wp-content/uploads/2012/03/Audi-R8-Spyder-100x100.jpg</url>
-    <prix>4000</prix>
+    <equipement>CD MP3, Airbags, ABS</equipement>
+    <motorisation>Diesel</motorisation>
+    <emission>150</emission>
+    <url>http://www.eteignezvotreordinateur.com/wp-content/uploads/2010/06/aston7-100x100.jpg</url>
+    <prix>25000000</prix>
+  </vehicule>
+
+<vehicule>
+
   </vehicule>
 </root>

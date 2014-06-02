@@ -11,8 +11,6 @@
 
 <head>
 <link rel="stylesheet" href=<c:url value="/template/css/bootstrap.css"/>>
-<link rel="stylesheet"
-	href=<c:url value="/template/css/font-awesome.min.css"/>>
 <link rel="stylesheet" href=<c:url value="/template/css/font.css"/>>
 <link rel="stylesheet" href=<c:url value="/template/css/style.css"/>>
 <link rel="stylesheet" href=<c:url value="/template/css/plugin.css"/>>
@@ -75,16 +73,6 @@
 
 		<!-- ADMIN ONLY -->
 		<security:authorize ifAllGranted="ROLE_ADMIN">
-			<!-- AJOUT CLIENT -->
-			<div class="row">
-				<div class="col-lg-6">
-					<a href="init.do"><i class="fa fa-plus-square">Ajouter un client</i></a>
-					<a href="../article/init.do"><i class="fa fa-plus-square">Ajouter un article</i></a>
-					
-				</div>
-			</div>
-			<!-- FIN AJOUT CLIENT -->
-
 			<div class="row">
 				<div class="col-lg-5">
 					<table
@@ -93,12 +81,24 @@
 						<tr>
 							<th style="width: 10%">Nom</th>
 							<th style="width: 10%">Prenom</th>
+							<th style="width: 10%">Adresse</th>
+							<th style="width: 10%">Mail</th>
+							<th style="width: 10%">Role</th>
+							<th style="width: 10%">Action</th>
 						</tr>
 						<c:forEach var="client" items="${clients }">
 
 							<tr>
 								<td>${client.nom }</td>
 								<td>${client.prenom }</td>
+								<td>${client.adresse }</td>
+								<td>${client.mail }</td>
+								<td>${client.role.role }</td>
+								<td colspan="2"><a href="delete.do?id=${client.id }"> <i
+										class="fa fa-minus-square fa-spin"></i>Delete
+								</a> <a href="init.do?id=${client.id }"> <i
+										class="fa fa-rotate-right fa-spin"></i>Update
+								</a></td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -109,19 +109,6 @@
 
 		</security:authorize>
 		<!-- END ADMIN ONLY -->
-
-		<!-- USER ONLY -->
-		<security:authorize ifAllGranted="ROLE_USER">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<h3>Vos commandes</h3>
-					</div>
-				</div>
-		</security:authorize>
-		<!-- END USER ONLY -->
-
-
 	</div>
 
 

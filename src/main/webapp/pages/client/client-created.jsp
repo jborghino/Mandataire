@@ -15,6 +15,8 @@
 	Client id : ${client.id }
 	${client.nom }
 	${client.prenom }
+	${client.adresse }
+	${client.mail }
 </body>
 
 </html>

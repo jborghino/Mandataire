@@ -73,24 +73,33 @@
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
-	<!-- SET default mail properties -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
-		<property name="username" value="johan.borghino@gmail.com" />
-		<property name="password" value="04221a3ttry" />
+		<property name="username" value="projet.mandataire@gmail.com" />
+		<property name="password" value="POE2014_" />
+
 		<property name="javaMailProperties">
 			<props>
-				<prop key="mail.transport.protocol">smtp</prop>
 				<prop key="mail.smtp.auth">true</prop>
 				<prop key="mail.smtp.starttls.enable">true</prop>
-				<prop key="mail.debug">true</prop>
 			</props>
 		</property>
 	</bean>
 
-	<bean id="MailSenderServiceImpl" class="fr.treeptik.service.impl.MailSenderServiceImpl">
-		<property name="mailSender" ref="mailSender" />
+	<bean id="customeMailMessage" class="org.springframework.mail.SimpleMailMessage">
+
+		<property name="from" value="projet.mandataire@gmail.com" />
+		<property name="to" value="johan.borghino@gmail.com" />
+		<property name="subject" value="Votre commande" />
+		<property name="text">
+			<value>
+		<![CDATA[
+			Dear %s,
+			%s
+		]]>
+			</value>
+		</property>
 	</bean>
 
 
